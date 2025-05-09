@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collection | RecipeBook</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/dark-mode.css" id="darkModeStyles" disabled>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Similar header to other pages -->
+  
+  <main class="main">
+    <div class="container">
+      <div class="collection-header">
+        <div class="collection-hero">
+          <div id="collectionImage" class="collection-hero-image">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <div class="collection-hero-info">
+            <h1 id="collectionName">Collection Name</h1>
+            <p id="collectionDescription">Collection description goes here</p>
+            <div class="collection-meta">
+              <span id="recipeCount">0 recipes</span>
+              <span id="createdDate">Created: ...</span>
+            </div>
+          </div>
+        </div>
+        <div class="collection-actions">
+          <button id="editCollectionBtn" class="btn btn-outline">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button id="addRecipesBtn" class="btn">
+            <i class="fas fa-plus"></i> Add Recipes
+          </button>
+        </div>
+      </div>
+
+      <div class="collection-recipes">
+        <h2><i class="fas fa-book-open"></i> Recipes in this Collection</h2>
+        <div id="recipesContainer" class="recipes-grid">
+          <!-- Recipes will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- Edit Collection Modal -->
+<div id="editCollectionModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Edit Collection</h2>
+    <form id="editCollectionForm">
+      <div class="form-group">
+        <label for="editCollectionName">Name</label>
+        <input type="text" id="editCollectionName" required>
+      </div>
+      <div class="form-group">
+        <label for="editCollectionDescription">Description</label>
+        <textarea id="editCollectionDescription" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Collection Image</label>
+        <input type="file" id="collectionImageUpload" accept="image/*">
+        <div id="collectionImagePreview" class="image-preview"></div>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="deleteCollectionBtn" class="btn btn-danger">
+          <i class="fas fa-trash"></i> Delete Collection
+        </button>
+        <button type="submit" class="btn">
+          <i class="fas fa-save"></i> Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Add Recipes Modal -->
+<div id="addRecipesModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Add Recipes to Collection</h2>
+    <div class="search-container">
+      <input type="text" id="recipeSearch" placeholder="Search recipes...">
+    </div>
+    <div id="availableRecipes" class="recipes-list">
+      <!-- Recipes will be loaded here -->
+    </div>
+    <div class="modal-actions">
+      <button id="addSelectedRecipesBtn" class="btn" disabled>
+        <i class="fas fa-plus"></i> Add Selected Recipes
+      </button>
+    </div>
+  </div>
+</div>  
+  </main>
+  
+
+
+  <script type="module" src="js/collection.js"></script>
+</body>
+</html>

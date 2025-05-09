@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Planner | RecipeBook</title>
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/meal-planner.css">
+  <link rel="stylesheet" href="css/dark-mode.css" id="darkModeStyles" disabled>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <i class="fas fa-utensils"></i>
+        <span>RecipeBook</span>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="add-recipe.html"><i class="fas fa-plus-circle"></i> Add Recipe</a></li>
+          <li><a href="meal-planner.html" class="active"><i class="fas fa-calendar-alt"></i> Meal Plan</a></li>
+          <li><a href="shopping-list.html"><i class="fas fa-shopping-basket"></i> Shopping List</a></li>
+        </ul>
+      </nav>
+      <div class="user-controls">
+        <button id="darkModeToggle" class="btn-icon" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="logoutBtn" class="btn btn-outline">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <div class="meal-planner-container">
+        <h1><i class="fas fa-calendar-alt"></i> Weekly Meal Planner</h1>
+        
+        <div class="planner-controls">
+          <div class="assign-meal">
+            <select id="mealDay" class="select">
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+            
+            <select id="mealRecipeSelect" class="select">
+              <option value="">Select a Recipe</option>
+            </select>
+            
+            <button id="assignMealBtn" class="btn">
+              <i class="fas fa-plus"></i> Assign Meal
+            </button>
+          </div>
+          
+          <button id="generateShoppingListBtn" class="btn btn-outline">
+            <i class="fas fa-shopping-basket"></i> Generate Shopping List
+          </button>
+        </div>
+        
+        <div class="week-planner">
+          <div class="day-card" id="monday">
+            <h3>Monday</h3>
+            <div class="meals-list"></div>
+          </div>
+          
+          <div class="day-card" id="tuesday">
+            <h3>Tuesday</h3>
+            <div class="meals-list"></div>
+          </div>
+          
+          <div class="day-card" id="wednesday">
+            <h3>Wednesday</h3>
+            <div class="meals-list"></div>
+          </div>
+          
+          <div class="day-card" id="thursday">
+            <h3>Thursday</h3>
+            <div class="meals-list"></div>
+          </div>
+          
+          <div class="day-card" id="friday">
+            <h3>Friday</h3>
+            <div class="meals-list"></div>
+          </div>
+          
+          <div class="day-card" id="saturday">
+            <h3>Saturday</h3>
+            <div class="meals-list"></div>
+          </div>
+          
+          <div class="day-card" id="sunday">
+            <h3>Sunday</h3>
+            <div class="meals-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="template-section">
+      <h2><i class="fas fa-clone"></i> Meal Plan Templates</h2>
+      <button id="saveAsTemplateBtn" class="btn">
+        <i class="fas fa-save"></i> Save Current as Template
+      </button>
+      
+      <div class="templates-grid" id="templatesGrid"></div>
+    </div>
+  </main>
+
+  <script type="module" src="js/meal-planner.js"></script>
+  <script type="module">
+    import { initializeLogout } from './js/logout.js';
+    initializeLogout();
+  </script>
+</body>
+</html>

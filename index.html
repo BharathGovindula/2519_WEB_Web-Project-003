@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Recipe Book</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/dark-mode.css" id="darkModeStyles" disabled>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <i class="fas fa-utensils"></i>
+        <span>RecipeBook</span>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="add-recipe.html"><i class="fas fa-plus-circle"></i> Add Recipe</a></li>
+          <li><a href="meal-planner.html"><i class="fas fa-calendar-alt"></i> Meal Plan</a></li>
+          <li><a href="shopping-list.html"><i class="fas fa-shopping-basket"></i> Shopping List</a></li>
+          <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+        </ul>
+      </nav>
+      <div class="user-controls">
+        <button id="darkModeToggle" class="btn-icon" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="logoutBtn" class="btn btn-outline">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="dashboard-section">
+        <h2><i class="fas fa-chart-pie"></i> Dashboard Overview</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>Total Recipes</h3>
+            <p id="totalRecipes">0</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3>Total Likes</h3>
+            <p id="totalLikes">0</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3>Total Views</h3>
+            <p id="totalViews">0</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3>Top Rated</h3>
+            <p id="topRatedRecipe">None</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="search-section">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search by ingredients (comma separated)...">
+          <button id="searchBtn" class="btn">
+            <i class="fas fa-search"></i> Search
+          </button>
+        </div>
+        <div class="filter-container">
+          <select id="filterCategory" class="select">
+            <option value="All">All Categories</option>
+            <option value="Appetizer">Appetizer</option>
+            <option value="Main Course">Main Course</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Salad">Salad</option>
+            <option value="Soup">Soup</option>
+          </select>
+          <select id="sortBy" class="select">
+            <option value="createdAt">Newest First</option>
+            <option value="likes">Most Liked</option>
+            <option value="views">Most Viewed</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="recipes-section">
+        <div class="section-header">
+          <h2><i class="fas fa-book-open"></i> Your Recipes</h2>
+          <button onclick="exportAllRecipes()" class="btn btn-outline">
+          <i class="fas fa-file-export"></i> Export All
+        </button>
+        </div>
+        <div id="recipesContainer" class="recipes-grid"></div>
+      </section>
+      <section class="collections-section">
+    <div class="section-header">
+      <h2><i class="fas fa-folder"></i> Your Collections</h2>
+      <button id="createCollectionBtn" class="btn">
+        <i class="fas fa-plus"></i> New Collection
+      </button>
+    </div>
+    
+    <div id="collectionsContainer" class="collections-grid">
+      <!-- Collections will be loaded here -->
+    </div>
+  </section>
+   </div>
+  </main>
+
+ 
+
+  <!-- Timer Modal -->
+  <div id="timerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeTimerModal">&times;</span>
+      <h2>Recipe Timer</h2>
+      <div class="timer-setup">
+        <label>Mins:</label>
+        <input type="number" id="timerMinutes" min="0" value="0">
+        <label>Secs:</label>
+        <input type="number" id="timerSeconds" min="0" max="59" value="0">
+      </div>
+      <div class="timer-display" id="timerDisplay">00:00</div>
+      <div class="timer-progress-bar">
+        <div id="progress" class="progress"></div>
+      </div>
+      <div class="timer-controls">
+        <button id="startTimer" class="btn">Start</button>
+        <button id="pauseTimer" class="btn" disabled>Pause</button>
+        <button id="resetTimer" class="btn">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 RecipeBook. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script type="module" src="js/recipes.js"></script>
+  <script type="module" src="js/analytics.js"></script>
+  <script type="module" src="js/timer.js"></script>
+  <script type="module" src="js/utils.js"></script>
+
+<script type="module">
+  import { initializeLogout } from './js/logout.js';
+  initializeLogout();
+</script>
+</body>
+</html>
